@@ -39,6 +39,7 @@
 </div>
 <div class="container" style="margin-top: 50px">
     <h3 style="text-align: center">CIMS - 校园即时通系统</h3>
+    <span id="login_tips" style="margin-left: 300px;color: #00AA88"></span>
     <form class="form-horizontal" action="login" method="post" style="text-align: center">
         <div class="form-group" >
             <label for="userName_login_input" class="col-sm-4 control-label"></label>
@@ -96,20 +97,27 @@
     /*登录请求*/
     $("#submit_login_btn").click(function () {
         $.ajax({
-            url:"login",
+            url:"user/login",
             data:$("form").serialize(),
-            type:"post",
+            type:"POST",
             dataType:"json",
             success:function (result) {
                 if (result.code === 100){
-                    window.location.href=result.target;
+                    $('#login_tips').html("登录中,请稍后...");
+                    setTimeout(function () {
+                        window.location.href=result.target;
+                    },400);
                 }else {
-                    if (undefined !== result.extend.fieldError.userName){
-                        show_validation_msg("#userName_login_input","error",result.extend.fieldError.userName);
+                    if (result.extend.fieldErrors==="密码错误"){
+                        alert("密码错误");
+                    }else{
+                        alert("用户不存在");
                     }
                 }
             }
         })
     })
+
+
 </script>
 </html>

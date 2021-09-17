@@ -30,7 +30,7 @@
                 <li><a href="#" style="font-size: 20px;margin-left: 70px">CIMS-校园即时通系统</a>
                 <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a>
                 <li ><a href="#">院校管理 <span class="sr-only">(current)</span></a>
-                <li ><a href="#">院校管理员管理 <span class="sr-only">(current)</span></a>
+                <li ><a href="areaManager">院校管理员管理 <span class="sr-only">(current)</span></a>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -77,46 +77,8 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="${App_Path}/commons/js/bootstrap.min.js"></script>
 <script src="${App_Path}/commons/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
-<script src="${App_Path}/commons/bootstrap-treeview-1.2.0-dist/dist/bootstrap-treeview.min.js"></script></body>
-<script>
-    $.fn.loadLoginUser=function () {
-        $.ajax({
-            url:"../loginUser",
-            type:"get",
-            dataType:"json",
-            success:function (result) {
-                if (result.code ===100){
-                    $("#loginUser_nav").append(result.extend.loginUser.userName);
-                    if (result.extend.loginUser.userType>1){
-                        let area="["+result.extend.loginUser.parentArea+" "
-                            +result.extend.loginUser.parentArea+" "
-                            +result.extend.loginUser.areaName+"]";
-                        $("#loginUser_nav").append($("<small></small>").append(area));
-                    }
-                }
-            }
-        })
-    };
+<script src="${App_Path}/commons/bootstrap-treeview-1.2.0-dist/dist/bootstrap-treeview.min.js"></script>
+<script src="../commons/js/comInfo.js"></script>
+</body>
 
-    $.fn.logout=function () {
-        $.ajax({
-            url:"../logout",
-            type:"get",
-            dataType: "json",
-            success:function (result) {
-                if (result.code===100){
-                    window.location.href=result.target;
-                }
-            }
-        })
-    };
-
-    $(function () {
-        $.fn.loadLoginUser();
-    });
-
-    $("#logout_nav").click(function () {
-        $.fn.logout();
-    });
-</script>
 </html>

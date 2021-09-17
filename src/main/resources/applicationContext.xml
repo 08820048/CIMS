@@ -12,53 +12,54 @@
     </context:component-scan>
 
     <!-- 读取外部属性文件 -->
-    <context:property-placeholder location="classpath:dbconfig.properties"></context:property-placeholder>
+    <context:property-placeholder location="classpath:dbconfig.properties"/>
 
     <!-- 配置C3P0数据源 -->
     <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
-        <property name="driverClass" value="${jdbc.driverClass}"></property>
-        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
-        <property name="user" value="${jdbc.user}"></property>
-        <property name="password" value="${jdbc.password}"></property>
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
 
-        <property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
-        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
-        <property name="minPoolSize" value="${jdbc.minPoolSize}"></property>
-        <property name="maxIdleTime" value="${jdbc.maxIdleTime}"></property>
-        <property name="idleConnectionTestPeriod" value="2000"></property>
-        <property name="acquireIncrement" value="${jdbc.acquireIncrement}"></property>
+        <property name="initialPoolSize" value="${jdbc.initialPoolSize}"/>
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"/>
+        <property name="minPoolSize" value="${jdbc.minPoolSize}"/>
+        <property name="maxIdleTime" value="${jdbc.maxIdleTime}"/>
+        <property name="idleConnectionTestPeriod" value="2000"/>
+        <property name="acquireIncrement" value="${jdbc.acquireIncrement}"/>
     </bean>
 
     <!-- 配置与MyBatis整合 -->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
-        <property name="dataSource" ref="dataSource"></property>
-        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
-        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <!-- 配置扫描器，将MyBatis接口实现的对象加入到容器中 -->
     <!--    <mybatis-spring:scan base-package="cn.edu.hzvtc.dao"></mybatis-spring:scan>-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="cn.edu.hzvtc.dao"></property>
+        <property name="basePackage" value="cn.edu.hzvtc.dao"/>
     </bean>
 
     <!-- 配置事务管理 -->
     <!-- 配置事务管理器 -->
     <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
-        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <!--注意：这里的constructor-arg值如果未BATCH的话，会导致insert语句返回值未int时直接返回其max+1,-->
+        <constructor-arg name="executorType" value="SIMPLE"/>
     </bean>
     <!-- 启用基于注解的事务 -->
-    <!--    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="get*" read-only="true"></tx:method>
-            <tx:method name="*"></tx:method>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*"/>
         </tx:attributes>
     </tx:advice>
 

@@ -92,6 +92,12 @@
     </div>
 </footer>
 <script src="${App_Path}/commons/Chart.js-2.9.3/dist/Chart.bundle.js"></script>
+<script src="${App_Path}/commons/js/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="${App_Path}/commons/js/bootstrap.min.js"></script>
+<script src="${App_Path}/commons/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
+<script src="${App_Path}/commons/bootstrap-treeview-1.2.0-dist/dist/bootstrap-treeview.min.js"></script>
+<script src="../commons/js/comInfo.js"></script>
 <script type="text/javascript">
     // 设置参数
     // Bar Charts
@@ -142,11 +148,6 @@
         responsive : true
     });
 </script>
-<script src="${App_Path}/commons/js/jquery.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script src="${App_Path}/commons/js/bootstrap.min.js"></script>
-<script src="${App_Path}/commons/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
-<script src="${App_Path}/commons/bootstrap-treeview-1.2.0-dist/dist/bootstrap-treeview.min.js"></script>
 <script>
     $.fn.loadLoginUser=function() {
         $.ajax({

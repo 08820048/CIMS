@@ -83,19 +83,20 @@
 <script src="${App_Path}/commons/js/bootstrap.min.js"></script>
 <script src="${App_Path}/commons/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script src="${App_Path}/commons/bootstrap-treeview-1.2.0-dist/dist/bootstrap-treeview.min.js"></script>
+<script src="../commons/js/comInfo.js"></script>
 <script type="text/javascript">
     // 设置参数
     // Data for line charts
-    let lineChartData = {
+    var lineChartData = {
         labels: ["已读", "未读", "已回复"],
 
         datasets: [
             {
                 label: "Dataset1",
                 lineTension: 0.1,
-                backgroundColor:"rgb(255, 99, 132,0.8)",
+                backgroundColor:"rgb(255, 99, 132,0.9)",
                 fill:true,
-                borderColor: "rgb(255, 99, 132, 1)",
+                borderColor: "rgb(255, 99, 132,0.9)",
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
@@ -115,18 +116,18 @@
                 label: "Dataset2",
                 lineTension: 0.1,
                 fill:true,
-                backgroundColor: "rgba(54, 162, 235,0.9)",
+                backgroundColor: "rgba(75,192,192,0.4)",
                 fillColor:"rgb(75,145,192,0.4)",
                 borderColor: "rgb(75,145,192,0.4)",
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: "rgb(54, 162, 235,0.9)",
+                pointBorderColor: "rgb(75,145,192)",
                 pointBackgroundColor: "#fff",
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgb(54, 162, 235,0.9)",
+                pointHoverBackgroundColor: "rgb(75,145,192)",
                 pointHoverBorderColor: "rgba(220,220,220,1)",
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
@@ -137,8 +138,8 @@
         ]
     };
 
-    let ctx1 = document.getElementById("lines-graph").getContext("2d");
-    let LineChart = new Chart(ctx1, {
+    var ctx = document.getElementById("lines-graph").getContext("2d");
+    var LineChart = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
         responsive: true,
@@ -151,7 +152,7 @@
     });
 
     // Data for pie chart
-    let pieData = {
+    var pieData = {
         labels: [
             "已读",
             "未读",
@@ -174,8 +175,8 @@
             }]
     };
 
-    let ctx2 = document.getElementById("pie-graph").getContext("2d");
-    let PieChart = new Chart(ctx2,{
+    var ctx = document.getElementById("pie-graph").getContext("2d");
+    var PieChart = new Chart(ctx,{
         type: 'pie',
         data: pieData,
         options: {
@@ -185,46 +186,9 @@
         },
     });
 </script>
+
 <script>
-    $.fn.loadLoginUser=function () {
-        $.ajax({
-            url:"../loginUser",
-            type:"get",
-            dataType:"json",
-            success:function (result) {
-                if (result.code ===100){
-                    $("#loginUser_nav").append(result.extend.loginUser.userName);
-                    if (result.extend.loginUser.userType>1){
-                        let area="["+result.extend.loginUser.area.parentArea.parentArea.areaName+" "
-                            +result.extend.loginUser.area.parentArea.parentArea.areaName+" "
-                            +result.extend.loginUser.area.areaName+"]";
-                        $("#loginUser_nav").append($("<small></small>").append(area));
-                    }
-                }
-            }
-        })
-    };
 
-    $.fn.logout=function () {
-        $.ajax({
-            url:"../logout",
-            type:"get",
-            dataType: "json",
-            success:function (result) {
-                if (result.code===100){
-                    window.location.href=result.target;
-                }
-            }
-        })
-    };
-
-    $(function () {
-        $.fn.loadLoginUser();
-    });
-
-    $("#logout_nav").click(function () {
-        $.fn.logout();
-    });
 </script>
 </body>
 </html>
