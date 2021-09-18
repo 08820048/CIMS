@@ -29,8 +29,8 @@
                 <!--                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a><>-->
                 <li><a href="#" style="font-size: 20px;margin-left: 70px">CIMS-校园即时通系统</a>
                 <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a>
-                <li ><a href="#">院校管理 <span class="sr-only">(current)</span></a>
-                <li ><a href="areaManager">院校管理员管理 <span class="sr-only">(current)</span></a>
+                <li ><a href="areaManager.jsp">院校管理 <span class="sr-only">(current)</span></a>
+                <li ><a href="areaAdminManager.jsp">院校管理员管理 <span class="sr-only">(current)</span></a>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -54,14 +54,14 @@
         <h1><small>校园即时通系统</small>云管理平台</h1>
         <h3>接入地区:</h3>
         <br>
-        <p>10个</p>
+        <p id="provinceCount"></p>
         <h3>接入城市:</h3>
-        <p>100个</p>
+        <p id="cityCount"></p>
         <h3>接入院校:</h3>
-        <p>1000个</p>
+        <p id="schoolCount"></p>
         <h3>使用用户:</h3>
         <br>
-        <p>10000名</p>
+        <p id="userCount"></p>
     </div>
 </div>
 
@@ -79,6 +79,25 @@
 <script src="${App_Path}/commons/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script src="${App_Path}/commons/bootstrap-treeview-1.2.0-dist/dist/bootstrap-treeview.min.js"></script>
 <script src="../commons/js/comInfo.js"></script>
+
+<script type="text/javascript">
+    /*请求首页数据*/
+    $(function () {
+        $.ajax({
+            url:"count",
+            type:"get",
+            dataType:"json",
+            success:function (result) {
+                if (result.code === 100){
+                    $("#provinceCount").html(result.extend.provinceCount+"个");
+                    $("#cityCount").html(result.extend.cityCount+"个");
+                    $("#schoolCount").html(result.extend.schoolCount+"个");
+                    $("#userCount").html(result.extend.userCount+"名");
+                }
+            }
+        })
+    })
+</script>
 </body>
 
 </html>

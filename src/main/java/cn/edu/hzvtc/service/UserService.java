@@ -57,7 +57,7 @@ public interface UserService {
      * @param ids id列表
      * @return true、false
      */
-//    public boolean delAreaAdmin(String ids);
+    public boolean delAreaAdmin(String ids);
 
 
     /**

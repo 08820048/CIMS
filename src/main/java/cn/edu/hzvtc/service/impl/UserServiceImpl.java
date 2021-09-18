@@ -19,14 +19,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-//    @Autowired
-//    private UserUnitMapper userUnitMapper;
-//
-//    @Autowired
-//    private MsgAnswerMapper msgAnswerMapper;
-//
-//    @Autowired
-//    private MsgMapper msgMapper;
+    @Autowired
+    private UserUnitMapper userUnitMapper;
+
+    @Autowired
+    private MsgAnswerMapper msgAnswerMapper;
+
+    @Autowired
+    private MsgMapper msgMapper;
 
     /**
      * 登录方法的接口实现
@@ -77,45 +77,45 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectAreaAdmins(provinceId, cityId, schoolId, userName);
     }
 
-//    /**
-//     * 删除院校管理员账号
-//     *
-//     * @param ids id列表
-//     * @return true、false
-//     */
-//    @Override
-//    public boolean delAreaAdmin(String ids) {
-//        boolean result = false;
-//        if (ids.contains("-")) {
-//            /*批量删除*/
-//            List<Integer> delIds = new ArrayList<>();
-//            String[] strIds = ids.split("-");
-//            for (String strId : strIds) {
-//                delIds.add(Integer.parseInt(strId));
-//            }
-//            if (userMapper.deleteByPrimaryKeyList(delIds) > 0) {
-//                /*删除user_unit关联的信息*/
-//                userUnitMapper.deleteByUserKeyList(delIds);
-//                /*删除msg_info关联的信息*/
-//                msgMapper.deleteByUserKeyList(delIds);
-//                /*删除msg_answer关联的信息*/
-//                msgAnswerMapper.deleteByUserKeyList(delIds);
-//                result = true;
-//            }
-//        } else {
-//            /*单一删除*/
-//            Integer id = Integer.parseInt(ids);
-//            if (userMapper.selectByPrimaryKey(id) != null) {
-//                if (userMapper.deleteByPrimaryKey(id) > 0) {
-//                    userUnitMapper.deleteByUserKey(id);
-//                    msgMapper.deleteByUserKey(id);
-//                    msgAnswerMapper.deleteByUserKey(id);
-//                    result = true;
-//                }
-//            }
-//        }
-//        return result;
-//    }
+    /**
+     * 删除院校管理员账号
+     *
+     * @param ids id列表
+     * @return true、false
+     */
+    @Override
+    public boolean delAreaAdmin(String ids) {
+        boolean result = false;
+        if (ids.contains("-")) {
+            /*批量删除*/
+            List<Integer> delIds = new ArrayList<>();
+            String[] strIds = ids.split("-");
+            for (String strId : strIds) {
+                delIds.add(Integer.parseInt(strId));
+            }
+            if (userMapper.deleteByPrimaryKeyList(delIds) > 0) {
+                /*删除user_unit关联的信息*/
+                userUnitMapper.deleteByUserKeyList(delIds);
+                /*删除msg_info关联的信息*/
+                msgMapper.deleteByUserKeyList(delIds);
+                /*删除msg_answer关联的信息*/
+                msgAnswerMapper.deleteByUserKeyList(delIds);
+                result = true;
+            }
+        } else {
+            /*单一删除*/
+            Integer id = Integer.parseInt(ids);
+            if (userMapper.selectByPrimaryKey(id) != null) {
+                if (userMapper.deleteByPrimaryKey(id) > 0) {
+                    userUnitMapper.deleteByUserKey(id);
+                    msgMapper.deleteByUserKey(id);
+                    msgAnswerMapper.deleteByUserKey(id);
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
 
     /**
      * 添加院校管理员
@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean addAreaAdmin(User user) {
-        String pwd = DigestUtils.md5DigestAsHex(user.getUserPassword().getBytes());
+        String pwd = user.getUserPassword();
         user.setUserPassword(pwd);
         return userMapper.insert(user) > 0;
     }
@@ -156,12 +156,13 @@ public class UserServiceImpl implements UserService {
     /**
      * 重置密码
      *
-     * @param id
-     * @return
+     * @param id 用户id
+     * @return 结果反馈
      */
     @Override
     public boolean passwordReset(Integer id) {
-        String pwd = DigestUtils.md5DigestAsHex("123456".getBytes());
+       // String pwd = DigestUtils.md5DigestAsHex("123456".getBytes());
+        String pwd = ("123456");
         return userMapper.resetPwd(id, pwd) > 0;
     }
 
