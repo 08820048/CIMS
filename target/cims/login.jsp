@@ -39,7 +39,7 @@
 </div>
 <div class="container" style="margin-top: 50px">
     <h3 style="text-align: center">CIMS - 校园即时通系统</h3>
-    <span id="login_tips" style="margin-left: 300px;color: #00AA88"></span>
+    <span id="login_tips" style="margin-left: 450px;color: #00AA88"></span>
     <form class="form-horizontal" action="login" method="post" style="text-align: center">
         <div class="form-group" >
             <label for="userName_login_input" class="col-sm-4 control-label"></label>
@@ -50,10 +50,11 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="userPassword-login_input" class="col-sm-4 control-label"></label>
+            <label for="userPassword_login_input" class="col-sm-4 control-label"></label>
             <div class="input-group col-sm-4">
                 <div class="input-group-addon">&nbsp;&nbsp;密码&nbsp;&nbsp;</div>
-                <input type="password" class="form-control" id="userPassword-login_input" name="userPassword" placeholder="请输入密码">
+                <input type="password" class="form-control" id="userPassword_login_input" name="userPassword"
+                       placeholder="请输入密码">
                 <div class="input-group-addon" id="passwordVisible_login_span"><span class="glyphicon glyphicon-eye-close"></span></div>
             </div>
         </div></form>
@@ -76,18 +77,19 @@
 <script src="./commons/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script src="./commons/bootstrap-treeview-1.2.0-dist/dist/bootstrap-treeview.min.js"></script></body>
 <script>
+
     /*隐藏/显示密码*/
     $("#passwordVisible_login_span").click(function () {
         let flg=$(this).attr("visible") === 0;
         let i=$("<i></i>");
         $(this).empty();
         if (flg) {
-            $("#userPassword-login_input").attr("type", "text");
+            $("#userPassword_login_input").attr("type", "text");
             i.addClass("glyphicon glyphicon-eye-open");
             $(this).append(i);
             $(this).attr("visible", 1);
         }else{
-            $("#userPassword-login_input").attr("type","password");
+            $("#userPassword_login_input").attr("type","password");
             i.addClass("glyphicon glyphicon-eye-close");
             $(this).append(i);
             $(this).attr("visible",0);

@@ -67,8 +67,8 @@
 
 
 <footer class="footer navbar-fixed-bottom">
-    <div class="container" style="text-align: center">
-        <p class="text-muted">Campus Instant Messaging system  &copy;2021 杭州职业技术学院 软件技术专业</p>
+    <div class="container" >
+        <p class="text-muted" style="margin-left: 2000px;">Campus Instant Messaging system  &copy;2021 杭州职业技术学院 软件技术专业</p>
     </div>
 </footer>
 
@@ -81,7 +81,6 @@
 <script src="../commons/js/comInfo.js"></script>
 
 <script type="text/javascript">
-    /*请求首页数据*/
     $(function () {
         $.ajax({
             url:"count",

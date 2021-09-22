@@ -54,21 +54,21 @@
         <h1><small>校园即时通系统</small>云管理平台</h1>
         <h3>接入地区:</h3>
         <br>
-        <p id="provinceCount"></p>
+        <p id="provinceCount" style="color: #00b3ee"></p>
         <h3>接入城市:</h3>
-        <p id="cityCount"></p>
+        <p id="cityCount" style="color: #00b3ee"></p>
         <h3>接入院校:</h3>
-        <p id="schoolCount"></p>
+        <p id="schoolCount" style="color: #00b3ee"></p>
         <h3>使用用户:</h3>
         <br>
-        <p id="userCount"></p>
+        <p id="userCount" style="color: #00b3ee"></p>
     </div>
 </div>
 
 
 <footer class="footer navbar-fixed-bottom">
-    <div class="container" style="text-align: center">
-        <p class="text-muted">Campus Instant Messaging system  &copy;2021 杭州职业技术学院 软件技术专业</p>
+    <div class="container" >
+        <p class="text-muted" style="margin-left: 2000px;">Campus Instant Messaging system  &copy;2021 杭州职业技术学院 软件技术专业</p>
     </div>
 </footer>
 
