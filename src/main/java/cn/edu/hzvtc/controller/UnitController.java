@@ -53,7 +53,6 @@ public class UnitController {
     public ReturnMsg getUnitTypes(HttpSession session){
         User user = (User)session.getAttribute("loginUser");
         List<UnitType>  unitTypes = unitService.getUnitTypesByAreaId(user.getUserAreaId());
-        System.out.println("调试-->控制层地域id:"+user.getUserAreaId());
         Long unitTypeCount = unitService.getCount(user.getUserAreaId());
         return ReturnMsg.success().add("unitTypes",unitTypes).add("unitTypeCount",unitTypeCount);
     }
@@ -102,20 +101,6 @@ public class UnitController {
     }
 
 
-    @RequestMapping(value = "/validName", method = RequestMethod.POST)
-    @ResponseBody
-    public ReturnMsg validName(@RequestParam(value = "unitTypeName") String unitTypeName, HttpSession session) {
-        UnitType unitType = new UnitType();
-        unitType.setUnitTypeName(unitTypeName);
-        User loginUser = (User) session.getAttribute("loginUser");
-        unitType.setUnitTypeAreaId(loginUser.getUserAreaId());
-        UnitType unitType1 = unitService.getUnitTypeName(unitType);
-        if (unitType1 != null) {
-            return ReturnMsg.success().add("unitType", unitType1);
-        } else {
-            return ReturnMsg.fail().add("fieldErrors", "用户不存在");
-        }
-    }
 
     @RequestMapping("/units")
     @ResponseBody
@@ -134,7 +119,6 @@ public class UnitController {
     @RequestMapping(value = "/unit", method = RequestMethod.POST)
     @ResponseBody
     public ReturnMsg saveUnit(@Valid Unit unit) {
-        System.out.println(unit.toString());
         if (unitService.addUnit(unit)) {
             return ReturnMsg.success();
         }

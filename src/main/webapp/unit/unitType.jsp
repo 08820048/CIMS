@@ -328,25 +328,7 @@
         }
     })
 
-    /*验证用户名*/
-    function vail_typeName_modal(val) {
-        var unitTypeName = val;
-        console.log(unitTypeName)
-        if (unitTypeName == '') {
-            $("#unitTypeName_add_modal").parent().addClass("has-error");
-            $("#unitTypeName_edit_modal").parent().addClass("has-error");
-            $(".help-block").text("不能为空");
-            console.log("用户名不能为空")
-            flag = false;
-        } else {
-            validName(unitTypeName);
-        }
-        if (flag) {
-            $(".modal form").find("*").removeClass("has-error has-success");
-            $(".help-block").text("");
-            console.log("用户名正常")
-        }
-    }
+
     /*判断用户名是否重复*/
     function validName(val) {
         var unitTypeName = val;
