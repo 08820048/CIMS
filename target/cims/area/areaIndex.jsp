@@ -54,14 +54,14 @@
         <h1><small>校园即时通系统</small>云管理平台</h1>
         <h3>接入地区:</h3>
         <br>
-        <p id="provinceCount" style="color: #00b3ee"></p>
+        <p id="provinceCount"></p>
         <h3>接入城市:</h3>
-        <p id="cityCount" style="color: #00b3ee"></p>
+        <p id="cityCount"></p>
         <h3>接入院校:</h3>
-        <p id="schoolCount" style="color: #00b3ee"></p>
+        <p id="schoolCount"></p>
         <h3>使用用户:</h3>
         <br>
-        <p id="userCount" style="color: #00b3ee"></p>
+        <p id="userCount"></p>
     </div>
 </div>
 
@@ -81,7 +81,6 @@
 <script src="../commons/js/comInfo.js"></script>
 
 <script type="text/javascript">
-    /*请求首页数据*/
     $(function () {
         $.ajax({
             url:"count",

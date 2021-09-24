@@ -395,14 +395,6 @@
     }
 
 
-    /*全选-此处注释是因为写在了com.js里面*/
-    /*    $("#check_all").click(function () {
-            $(".check_item").prop("checked", $(this).prop("checked"));
-        });
-        $(document).on("click", ".check_item", function () {
-            var flag = $(".check_item").length == $(".check_item:checked").length;
-            $("#check_all").prop("checked", flag)
-        })*/
     /*删除院校管理员*/
     $(document).on("click", ".delete_btn", function () {
         var userName = $(this).parents("tr").find("td:eq(1)").text();

@@ -31,7 +31,7 @@ public class ReturnMsg {
         return result;
     }
 
-    public ReturnMsg add(String key,Object value){
+    public ReturnMsg add(String key, Object value){
         this.getExtend().put(key,value);
         return this;
     }

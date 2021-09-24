@@ -39,7 +39,6 @@
 </div>
 <div class="container" style="margin-top: 50px">
     <h3 style="text-align: center">CIMS - 校园即时通系统</h3>
-    <span id="login_tips" style="margin-left: 450px;color: #00AA88"></span>
     <form class="form-horizontal" action="login" method="post" style="text-align: center">
         <div class="form-group" >
             <label for="userName_login_input" class="col-sm-4 control-label"></label>
@@ -105,10 +104,7 @@
             dataType:"json",
             success:function (result) {
                 if (result.code === 100){
-                    $('#login_tips').html("登录中,请稍后...");
-                    setTimeout(function () {
                         window.location.href=result.target;
-                    },400);
                 }else {
                     if (result.extend.fieldErrors==="密码错误"){
                         alert("密码错误");
